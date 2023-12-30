@@ -15,6 +15,12 @@ class CreateXMenu extends Migration
     {
         Schema::create('x_menu', function (Blueprint $table) {
             $table->id();
+            $table->string('kode_menu', 50);
+            $table->string('nama_menu', 50);
+            $table->boolean('is_active')->nullable()->default(false);
+            $table->boolean('is_deleted')->nullable()->default(false);
+            $table->tinyInteger('created_by')->nullable();
+            $table->tinyInteger('updated_by')->nullable();
             $table->timestamps();
         });
     }

@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Tymon\JWTAuth\Exceptions\JWTException;
 
-class LoginController extends Controller
+class AuthController extends Controller
 {
     public function authenticate(Request $request)
     {
@@ -39,7 +39,7 @@ class LoginController extends Controller
             } else {
                 XUsers::where('username', $params['username'])
                     ->update(['token' => $token]);
-                $userInfo = XUsers::select('user_id', 'username', 'full_name', 'token')->where('username', $request->username)->first();
+                $userInfo = XUsers::select('id', 'username', 'full_name', 'token')->where('username', $request->username)->first();
                 session_start();
                 $_SESSION['token_app'] = $token;
 
@@ -60,7 +60,7 @@ class LoginController extends Controller
     public static function getUserInfo($token)
     {
         $token = substr($token, 7);
-        $q = XUsers::select('user_id', 'username', 'token')
+        $q = XUsers::select('id', 'username', 'token')
             ->where('token', $token)
             ->get()
             ->toArray();

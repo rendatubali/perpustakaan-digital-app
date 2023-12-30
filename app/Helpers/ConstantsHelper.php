@@ -18,4 +18,10 @@ class ConstantsHelper
     const MSG_ERR_SAVE = 'Data gagal disimpan!';
     const MSG_ERR_DELETE = 'Data gagal dihapus!';
     const MSG_ERR_VALIDATION = 'Input data dengan benar!';
+
+    const BLM_APPROVE = 0;
+    const SDH_APPROVE = 1;
+    const DIPINJAM = 2;
+    const DIKEMBALIKAN = 3;
+    const SELESAI = 4;
 }

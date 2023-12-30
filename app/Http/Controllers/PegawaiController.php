@@ -8,12 +8,19 @@ use App\Models\Pegawai;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
 
 class PegawaiController extends Controller
 {
     public function index()
     {
+        $data = Http::get('http://127.0.0.1:8000/api/pegawai/get-data', []);
+
+        if ($data['status'] == 401) {
+            return redirect('auth/login')->with('status', 'Session Expired!');
+        }
+        return view('pegawai/index', compact('data'));
     }
 
     public function getDataPegawai(Request $request)

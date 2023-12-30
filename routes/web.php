@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Authors\AuthorController;
 use App\Http\Controllers\Books\BooksController;
+use App\Http\Controllers\Pengunjung\PengunjungController;
 use App\Http\Controllers\Users\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -37,4 +39,12 @@ Route::group(['prefix' => 'books'], function () {
 Route::group(['prefix' => 'authors'], function () {
     Route::get('/index', [AuthorController::class, 'index']);
     Route::post('/save-authors', [AuthorController::class, 'saveAuthors']);
+});
+
+Route::group(['prefix' => 'pengunjung'], function () {
+    Route::get('/index', [PengunjungController::class, 'index']);
+});
+
+Route::group(['prefix' => 'auth'], function () {
+    Route::get('/login', [LoginController::class, 'index']);
 });
